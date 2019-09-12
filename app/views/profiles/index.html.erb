@@ -1,0 +1,28 @@
+<div class="main">
+<p id="notice"><%= notice %></p>
+
+<h1>Profile Picture</h1>
+
+<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
+<% check = 0, links='1', id=nil %>
+<% @profiles.each do |profile| %>
+  <% if current_user.id == profile.user_id %>
+    <% check = 1%>
+    <%links = profile.image.url %>
+    <%id =profile%>
+  <% end %>
+<% end %>
+<% if check==1 %>
+<p><%= image_tag links, class:"rounded", style:"max-width:100%" unless links.blank? %></p>
+<%= link_to 'change ', edit_profile_path(id),class:'btn btn-primary' %>
+<%= link_to 'remove ', id, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+<% else %>
+<p><i class="fal fa-user"></i></p>
+<%= link_to 'upload a profile picture', new_profile_path,class:'btn btn-secondary' %>
+<% end %>
+<% end %>
+<hr>
+<%= link_to 'Back Home', posts_path,class:'btn btn-warning' %>
+</div>
+

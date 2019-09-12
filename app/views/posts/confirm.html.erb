@@ -1,0 +1,18 @@
+<div class="main">
+<h3>Send it with the following contents.</h3>
+
+<%= form_with(model: @post, url: posts_path, local: true) do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :image_cache %>
+
+  <p>Title:<%= @post.content %></p>
+  <p>Image:<%= image_tag @post.image.url%></p>
+  <%= form.submit  "confirm", class:'btn btn-primary' %>
+<% end %>
+
+<%= form_with(model: @post, url: new_post_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "back", class:'btn btn-warning' %>
+<% end %>
+</div>

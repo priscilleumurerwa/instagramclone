@@ -1,0 +1,11 @@
+<div class="main">
+<h1>Posts you have favourited</h1>
+<% @favorites.each do |favorite| %>
+<% if favorite.user_id == current_user.id %>
+<%= favorite.post.user.email %>'s post
+<%= image_tag favorite.post.image.url %>'s post
+<% end %>
+<hr>
+<% end %>
+<%= link_to 'Back Home', posts_path(current_user) ,class:'btn btn-warning'%>
+</div>

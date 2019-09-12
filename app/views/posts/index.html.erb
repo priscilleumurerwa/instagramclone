@@ -1,0 +1,44 @@
+<div class="profile">
+<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
+<% check = 0, links='1', id=nil %>
+<% @profiles.each do |profile| %>
+  <% if current_user.id == profile.user_id %>
+    <% check = 1%>
+    <%links = profile.image.url %>
+    <%id =profile%>
+  <% end %>
+<% end %>
+<% if check==1 %>
+<p style="color:blue">Welcome <%=current_user.email%></p>
+<p><%= image_tag links, class:"rounded-circle" unless links.blank? %></p>
+<% else %>
+<p><i class="fal fa-user"></i></p>
+<%= link_to 'upload a profile picture', new_profile_path %>
+<% end %>
+<% end %>
+<%= link_to 'New Post', new_post_path,class:'btn btn-success' %>
+</div>
+<div class="main">
+<h1>Posts</h1>
+
+
+    <% @posts.each do |post| %>
+   
+       <p> <%= post.content %></p>
+        <%if image_tag post.image.url%>
+        <td><%= image_tag post.image.url,width:"40%", height:"20%" %></td>
+        <% end %>
+        <td><%= post.user.email %></td>
+        <p><%= link_to 'Show', post %></p>
+        <% if post.user_id==current_user.id%>
+        
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        
+        <% end %>
+
+      </tr>
+      <hr>
+    <% end %>
+</div>
