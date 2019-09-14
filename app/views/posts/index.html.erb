@@ -27,7 +27,7 @@
    
        <p> <%= post.content %></p>
         <%if image_tag post.image.url%>
-        <td><%= image_tag post.image.url,width:"40%", height:"20%" %></td>
+        <td><%= image_tag post.image.url,width:"60%", height:"40%" %></td>
         <% end %>
         <td><%= post.user.email %></td>
         <p><%= link_to 'Show', post %></p>

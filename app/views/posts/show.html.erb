@@ -8,7 +8,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @post.image.url %>
+  <%= image_tag @post.image.url,size:'350x250'%>
 </p>
 
 <% unless @post.user_id == current_user.id %>
